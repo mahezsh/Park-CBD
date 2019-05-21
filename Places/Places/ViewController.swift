@@ -17,6 +17,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var lat: UITextField!
     @IBOutlet weak var long: UITextField!
+    @IBOutlet weak var activityIn: UIActivityIndicatorView!
     
     
     var places = [Place]()
@@ -26,6 +27,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.activityIn.transform = CGAffineTransform(scaleX: 2, y: 2)
+        activityIn.startAnimating()
         parseJSONOnline()
         getCurrLoc()
 
@@ -126,12 +129,11 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
         var place: Place
-
         place = places[indexPath.row]
         cell.textLabel!.text = "Marker ID " + place.stMarkerID + "  Bay ID " + place.bayID
         cell.detailTextLabel!.text = "Lat " + place.lat + "  Long " + place.lon
-        
         return cell
+        
     }
 
     @IBAction func sortNearbyClicked(_ sender: Any) {
@@ -147,13 +149,18 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     func parseJSONOnline()
     {
+        
+        
         queryService.parseJSONOnline() { results in
             if let results = results {
                 self.places = results
                 self.tableView.reloadData()
-                self.tableView.setContentOffset(CGPoint.zero, animated: false)
+                self.tableView.setContentOffset(CGPoint.zero, animated: true)
+                
             }
+            self.activityIn.stopAnimating()
         }
+        
     }
     
     }
