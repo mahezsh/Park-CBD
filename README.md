@@ -1,4 +1,3 @@
-# task-07c-matrixnl
 Park CBD
 
 Problem: Finding a parking bay is a real problem for the people who come to Melbourne city.
@@ -10,6 +9,8 @@ parking spots available. Hence, the person has to drive his/her car to another p
 available parking spot. Additionally, parking restrictions vary according to each parking bay.
 Many people face parking fines due to not knowing the parking restrictions related to each
 parking bay.
+
+
 Solution: “Park CBD” will be designed as a solution to the above mentioned problem.
 Proposed app contains a large dataset of On-street parking bays available in Melbourne CBD.
 It contains information about more than 2,000 parking spots in the city area. Moreover, this
